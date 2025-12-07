@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "Roald Johanson",
+        "country": "Estonia",
+        "age": 50
+    },
+    {
+        "id": 2,
+        "name": "Taavi Libe",
+        "country": "Estonia",
+        "age": 42
+    },
+    {
+        "id": 3,
+        "name": "Mart Helme",
+        "country": "Soome",
+        "age": 70
+    },
+    {
+        "id": 4,
+        "name": "Rafael Nadal",
+        "country": "Spain",
+        "age": 35
+    },
+    {
+        "id": 5,
+        "name": "Marek Lindmaa",
+        "country": "Germany",
+        "age": 57
+    }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "100M_SPRINT"
+  },
+  {
+    "name": "LONG_JUMP"
+  },
+  {
+    "name": "SHOT_PUT"
+  },
+  {
+    "name": "HIGH_JUMP"
+  },
+  {
+    "name": "400_METRES"
+  },
+  {
+    "name": "110M_HURDLES"
+  },
+  {
+    "name": "DISCUS"
+  },
+  {
+    "name": "POLE_VAULT"
+  },
+  {
+    "name": "JAVELIN"
+  },
+  {
+    "name": "1500_METRES"
+  }
+]
