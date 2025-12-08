@@ -1,12 +1,10 @@
 package ee.geir.decathlon.controller;
 
-import ee.geir.decathlon.entity.Category;
 import ee.geir.decathlon.entity.Competitor;
 import ee.geir.decathlon.entity.Result;
 import ee.geir.decathlon.repository.CompetitorRepository;
 import ee.geir.decathlon.repository.ResultRepository;
 import ee.geir.decathlon.service.CompetitorService;
-import ee.geir.decathlon.service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

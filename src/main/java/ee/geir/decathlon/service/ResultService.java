@@ -1,6 +1,8 @@
 package ee.geir.decathlon.service;
 
+import ee.geir.decathlon.dto.ResultRequest;
 import ee.geir.decathlon.entity.Category;
+import ee.geir.decathlon.entity.Competitor;
 import ee.geir.decathlon.entity.Result;
 import ee.geir.decathlon.repository.CategoryRepository;
 import ee.geir.decathlon.repository.CompetitorRepository;
@@ -21,34 +23,15 @@ public class ResultService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    public Result createResult(ResultRequest request) {
+        Competitor competitor = competitorRepository.findByNameIgnoreCase(request.competitorName)
+                .orElseThrow(() -> new RuntimeException("Competitor not found"));
+        Category category = categoryRepository.findByNameIgnoreCase(request.categoryName)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
 
-    public Result createResult(double result, long categoryId, long competitorId) {
-        if (!competitorRepository.existsById(competitorId)) {
-            throw new RuntimeException("Competitor doesn't exist");
-        }
-        Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new RuntimeException("This category is not found"));
+        Result result = new Result(request.result, category, competitor);
 
-        int points = Calculations.calculatePoints(category.getName(), result);
-
-        Result res = new Result(result, points, category, competitorId);
-        return resultRepository.save(res);
+        return resultRepository.save(result);
     }
 
-    public String getIndividualResults(long id) {
-
-        return "";
-        /*
-        String output = "<table><tr><th>Competitor ID</th><th>Category</th><th>Result</th><th>Points</th></tr>";
-        int points = 0;
-        List<Result> competitorResults = resultRepository.findByCompetitorId(id);
-
-        for (Result result : competitorResults) {
-            output += result;
-            points += result.getPoints();
-        }
-        output += "<tr><td>Total points:</td><td></td><td></td><td>" + points + "</td></tr></table>";
-        return output;
-         */
-    }
 }
