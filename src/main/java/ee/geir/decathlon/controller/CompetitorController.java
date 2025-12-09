@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class CompetitorController {
 
@@ -54,6 +56,13 @@ public class CompetitorController {
     }
 
     @GetMapping("competitors/results")
+    public List<Map<String, Object>> getCompetitorsWithResults() {
+        return competitorService.buildLeaderboard();
+    }
+
+
+
+    @GetMapping("competitors/results/basic")
     public String getCompetitorsResults() {
         return competitorService.buildCompetitorsResults();
     }

@@ -8,7 +8,10 @@ import ee.geir.decathlon.repository.ResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CompetitorService {
@@ -18,6 +21,33 @@ public class CompetitorService {
     @Autowired
     private ResultRepository resultRepository;
 
+
+    // SECOND VARIANT
+    public List<Map<String, Object>> buildLeaderboard() {
+        List<Competitor> competitors = competitorRepository.findAll();
+        List<Map<String, Object>> leaderboard = new ArrayList<>();
+
+        for (Competitor comp : competitors) {
+            List<Result> results = resultRepository.findByCompetitorId(comp.getId());
+            int totalPoints = results.stream()
+                    .mapToInt(Result::getPoints)
+                    .sum();
+
+            Map<String, Object> obj = new HashMap<>();
+            obj.put("id", comp.getId());
+            obj.put("name", comp.getName());
+            obj.put("country", comp.getCountry());
+            obj.put("age", comp.getAge());
+            obj.put("totalPoints", totalPoints);
+
+            leaderboard.add(obj);
+        }
+        leaderboard.sort((a,b) -> ((Integer)b.get("totalPoints")).compareTo((Integer)a.get("totalPoints")));
+        return leaderboard;
+    }
+
+
+    // FIRST VARIANT
     public String buildCompetitorsResults() {
         String output = "<table><tr><th>Name</th><th>Country</th><th>Age</th><th>Points</th></tr>";
 

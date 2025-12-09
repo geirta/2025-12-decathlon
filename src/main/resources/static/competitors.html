@@ -8,11 +8,11 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
-<body onload="loadAllCompetitors()">
+<body>
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Decathlon</a>
+        <a class="navbar-brand" href="#">DECATHLON</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -58,76 +58,7 @@
     </table>
 </div>
 
-<script>
-    // ADD COMPETITOR
-
-    document.getElementById("competitorForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-
-        const data = {
-            name: document.getElementById("name").value,
-            country: document.getElementById("country").value,
-            age: parseInt(document.getElementById("age").value)
-        };
-
-        fetch("http://localhost:8080/competitor", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(() => {
-            updateAllCompetitors(); // reloads competitor table
-            document.getElementById("competitorForm").reset();
-        })
-        .catch(err => console.error(err));
-    });
-
-    // GET ALL COMPETITORS
-
-    function updateAllCompetitors() {
-        fetch("http://localhost:8080/competitors")
-            .then(res => res.json())
-            .then(competitors => {
-                const tbody = document.querySelector("#allCompetitors tbody");
-                tbody.innerHTML = "";
-
-                competitors.forEach(c => {
-                    const row = `
-                        <tr>
-                            <th scope="row">${c.id}</th>
-                            <td>${c.name}</td>
-                            <td>${c.country}</td>
-                            <td>${c.age}</td>
-                        </tr>
-                    `;
-                    tbody.innerHTML += row;
-                });
-            });
-    }
-
-    // GET ALL COMPETITORS ON PAGE LOAD
-
-    async function loadAllCompetitors() {
-        const response = await fetch("http://localhost:8080/competitors");
-        const data = await response.json();
-
-        const tbody = document.querySelector("#allCompetitors tbody");
-        tbody.innerHTML = "";
-
-        data.forEach(c => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <th scope="row">${c.id}</th>
-                <td>${c.name}</td>
-                <td>${c.country}</td>
-                <td>${c.age}</td>
-            `;
-            tbody.appendChild(row);
-        });
-    }
-
-</script>
+<script src="js/competitors.js"></script>
 
 </body>
 </html>

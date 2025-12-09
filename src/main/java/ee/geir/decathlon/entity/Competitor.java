@@ -1,9 +1,7 @@
 package ee.geir.decathlon.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Competitor {
@@ -22,5 +19,16 @@ public class Competitor {
     private String name;
     private String country;
     private Integer age;
+
+    @Transient
+    @JsonIgnore
+    private int totalPoints;
+
+    public Competitor(Long id, String name, String country, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.country = country;
+        this.age = age;
+    }
 
 }

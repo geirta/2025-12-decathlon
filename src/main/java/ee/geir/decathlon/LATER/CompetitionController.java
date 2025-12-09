@@ -1,4 +1,4 @@
-package ee.geir.decathlon.Later;
+package ee.geir.decathlon.LATER;
 
 import ee.geir.decathlon.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

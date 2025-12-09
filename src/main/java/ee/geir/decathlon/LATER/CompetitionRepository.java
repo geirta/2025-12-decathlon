@@ -1,4 +1,4 @@
-package ee.geir.decathlon.Later;
+package ee.geir.decathlon.LATER;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
