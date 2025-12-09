@@ -19,7 +19,6 @@ public class Result {
     private int points;
     @ManyToOne
     private Category category;
-
     @ManyToOne
     private Competitor competitor;
 

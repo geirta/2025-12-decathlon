@@ -9,10 +9,6 @@ import java.util.List;
 public class Calculations {
 
 
-    public static String calculateLeaderboard() {
-        return "";
-    }
-
     public static int calculatePoints(String category, double result) {
         int score = 0;
         double A = 0;

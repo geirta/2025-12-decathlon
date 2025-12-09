@@ -9,7 +9,7 @@ document.getElementById("resultForm").addEventListener("submit", async function(
         result: parseFloat(document.getElementById("resultValue").value)
     };
 
-    await fetch("http://localhost:8080/result", {
+    await fetch("http://localhost:8080/results", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)

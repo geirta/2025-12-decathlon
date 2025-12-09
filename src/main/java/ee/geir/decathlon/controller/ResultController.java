@@ -27,7 +27,7 @@ public class ResultController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @PostMapping("result")
+    @PostMapping("results")
     public List<Result> addResult(@RequestBody ResultRequest request) {
         resultService.createResult(request);
         return resultRepository.findAll();

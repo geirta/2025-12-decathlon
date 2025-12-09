@@ -2,7 +2,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const competitorId = urlParams.get('id');
 
 async function loadCompetitorResults() {
-    const response = await fetch(`http://localhost:8080/competitor/${competitorId}/results`);
+    const response = await fetch(`http://localhost:8080/competitors/${competitorId}/results`);
 
     const results = await response.json();
 

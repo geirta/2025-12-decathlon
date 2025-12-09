@@ -9,7 +9,7 @@ document.getElementById("competitorForm").addEventListener("submit", function(e)
         age: parseInt(document.getElementById("age").value)
     };
 
-    fetch("http://localhost:8080/competitor", {
+    fetch("http://localhost:8080/competitors", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
