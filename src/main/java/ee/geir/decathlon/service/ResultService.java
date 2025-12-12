@@ -29,6 +29,11 @@ public class ResultService {
         Category category = categoryRepository.findByNameIgnoreCase(request.categoryName)
                 .orElseThrow(() -> new RuntimeException("Category not found"));
 
+        resultRepository.findByCompetitor_IdAndCategory_Id(competitor.getId(), category.getId())
+                .ifPresent(r -> {
+                    throw new RuntimeException("Result already exists for this competitor in this category.");
+                });
+
         Result result = new Result(request.result, category, competitor);
 
         return resultRepository.save(result);

@@ -15,36 +15,10 @@ document.getElementById("resultForm").addEventListener("submit", async function(
         body: JSON.stringify(data)
     })
     .then(() => {
-        updateResults();
+        loadAllResults();
         document.getElementById("resultForm").reset();
     });
 });
-
-
-// UPDATE RESULT TABLE
-
-function updateResults() {
-    fetch("http://localhost:8080/competitors/results")
-        .then(res => res.json())
-        .then(competitors => {
-            const tbody = document.querySelector("#leaderboard tbody");
-            tbody.innerHTML = "";
-
-            competitors.forEach(c => {
-                const row = `
-                    <tr>
-                        <th scope="row">${c.id}</th>
-                        <td>${c.name}</td>
-                        <td>${c.country}</td>
-                        <td>${c.age}</td>
-                        <td>${c.totalPoints}</td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
-        });
-}
-
 
 // GET ALL RESULTS ON PAGE LOAD
 
@@ -55,10 +29,10 @@ async function loadAllResults() {
     const tbody = document.querySelector("#leaderboard tbody");
     tbody.innerHTML = "";
 
-    data.forEach(c => {
+    data.forEach((c, index) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <th scope="row">${c.id}</th>
+            <th scope="row">${index+1}</th>
             <td>${c.name}</td>
             <td>${c.country}</td>
             <td>${c.age}</td>
@@ -70,7 +44,6 @@ async function loadAllResults() {
         tbody.appendChild(row);
     });
 }
-
 
 // LOAD DROP DOWNS
 

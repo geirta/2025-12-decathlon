@@ -10,6 +10,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(
+        name = "result",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"competitor_id", "category_id"})
+)
 public class Result {
 
     @Id
