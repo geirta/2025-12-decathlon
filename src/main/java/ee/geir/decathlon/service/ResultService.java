@@ -7,11 +7,8 @@ import ee.geir.decathlon.entity.Result;
 import ee.geir.decathlon.repository.CategoryRepository;
 import ee.geir.decathlon.repository.CompetitorRepository;
 import ee.geir.decathlon.repository.ResultRepository;
-import ee.geir.decathlon.util.Calculations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ResultService {
@@ -35,6 +32,7 @@ public class ResultService {
                 });
 
         Result result = new Result(request.result, category, competitor);
+        competitor.setTotalPoints(competitor.getTotalPoints() + result.getPoints());
 
         return resultRepository.save(result);
     }

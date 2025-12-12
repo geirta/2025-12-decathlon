@@ -14,8 +14,6 @@ public interface ResultRepository extends JpaRepository<Result,Long> {
 
     List<Result> findByCompetitorId(long competitorId);
 
-    Optional<Result> findByCompetitorAndCategory(Long competitorId, Long categoryId);
-
     Optional<Result> findByCompetitor_IdAndCategory_Id(Long id, Long id1);
 
 

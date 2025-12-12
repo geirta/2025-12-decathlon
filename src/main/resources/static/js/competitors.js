@@ -27,6 +27,7 @@ document.getElementById("competitorForm").addEventListener("submit", function(e)
 async function loadAllCompetitors() {
     const response = await fetch("http://localhost:8080/competitors");
     const data = await response.json();
+    data.sort((a, b) => a.id - b.id);
 
     const tbody = document.querySelector("#allCompetitors tbody");
     tbody.innerHTML = "";

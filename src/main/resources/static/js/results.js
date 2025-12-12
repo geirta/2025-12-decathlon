@@ -23,8 +23,9 @@ document.getElementById("resultForm").addEventListener("submit", async function(
 // GET ALL RESULTS ON PAGE LOAD
 
 async function loadAllResults() {
-    const response = await fetch("http://localhost:8080/competitors/results");
+    const response = await fetch("http://localhost:8080/competitors");
     const data = await response.json();
+    data.sort((a, b) => b.totalPoints - a.totalPoints);
 
     const tbody = document.querySelector("#leaderboard tbody");
     tbody.innerHTML = "";

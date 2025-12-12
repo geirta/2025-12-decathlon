@@ -18,9 +18,6 @@ public class Competitor {
     private String name;
     private String country;
     private Integer age;
-
-    @Transient
-    @JsonIgnore
     private int totalPoints;
 
     public Competitor(Long id, String name, String country, Integer age) {
@@ -28,6 +25,7 @@ public class Competitor {
         this.name = name;
         this.country = country;
         this.age = age;
+        this.totalPoints = 0;
     }
 
 }

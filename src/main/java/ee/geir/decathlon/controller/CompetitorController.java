@@ -44,9 +44,4 @@ public class CompetitorController {
         return resultRepository.findByCompetitorId(id);
     }
 
-    @GetMapping("competitors/results")
-    public List<Map<String, Object>> getCompetitorsWithResults() {
-        return competitorService.buildLeaderboard();
-    }
-
 }
