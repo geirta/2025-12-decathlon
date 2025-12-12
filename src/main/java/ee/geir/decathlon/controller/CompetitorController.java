@@ -22,7 +22,6 @@ public class CompetitorController {
     @Autowired
     private CompetitorService competitorService;
 
-
     @PostMapping("competitors")
     public List<Competitor> addCompetitor(@RequestBody Competitor competitor) {
         competitorService.validate(competitor);

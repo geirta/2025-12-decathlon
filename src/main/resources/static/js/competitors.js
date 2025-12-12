@@ -16,34 +16,11 @@ document.getElementById("competitorForm").addEventListener("submit", function(e)
     })
     .then(res => res.json())
     .then(() => {
-        updateAllCompetitors(); // reloads competitor table
+        loadAllCompetitors(); // reloads competitor table
         document.getElementById("competitorForm").reset();
     })
     .catch(err => console.error(err));
 });
-
-// UPDATE COMPETITOR LIST AFTER ADDING A NEW ONE
-
-function updateAllCompetitors() {
-    fetch("http://localhost:8080/competitors")
-        .then(res => res.json())
-        .then(competitors => {
-            const tbody = document.querySelector("#allCompetitors tbody");
-            tbody.innerHTML = "";
-
-            competitors.forEach(c => {
-                const row = `
-                    <tr>
-                        <th scope="row">${c.id}</th>
-                        <td>${c.name}</td>
-                        <td>${c.country}</td>
-                        <td>${c.age}</td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
-        });
-}
 
 // GET ALL COMPETITORS ON PAGE LOAD
 
@@ -66,4 +43,19 @@ async function loadAllCompetitors() {
     });
 }
 
+// LOAD DROPDOWN COUNTRIES
+
+async function loadDropdowns() {
+    const competitorCountries = ["Estonia", "Finland", "Latvia", "Sweden"];
+    const countryDropdown = document.getElementById("country");
+    countryDropdown.innerHTML = "";
+    competitorCountries.forEach(c => {
+        const option = document.createElement("option");
+        option.value = c;
+        option.text = c;
+        countryDropdown.appendChild(option);
+    });
+}
+
+loadDropdowns();
 loadAllCompetitors();

@@ -17,23 +17,16 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("category")
+    @PostMapping("categories")
     public List<Category> addCategory(@RequestBody Category category) {
         categoryService.validate(category);
         categoryRepository.save(category);
         return categoryRepository.findAll();
     }
 
-    @GetMapping("category/{id}")
+    @GetMapping("categories/{id}")
     public Category getCategory(@PathVariable Long id) {
         return categoryRepository.findById(id).get();
-    }
-
-    @PostMapping("categories")
-    public List<Category> addCategories(@RequestBody List<Category> categories) {
-        categoryService.validate(categories);
-        categoryRepository.saveAll(categories);
-        return categoryRepository.findAll();
     }
 
     @GetMapping("categories")

@@ -33,18 +33,4 @@ public class ResultController {
         return resultRepository.findAll();
     }
 
-    @GetMapping("names")
-    public Map<String, List<String>> getNames() {
-        Map<String, List<String>> map = new HashMap<>();
-        map.put("competitorNames", competitorRepository.findAll()
-                .stream()
-                .map(Competitor::getName)
-                .toList());
-        map.put("categoryNames", categoryRepository.findAll()
-                .stream()
-                .map(Category::getName)
-                .toList());
-        return map;
-    }
-
 }

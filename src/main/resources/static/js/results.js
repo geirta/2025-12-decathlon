@@ -48,24 +48,27 @@ async function loadAllResults() {
 // LOAD DROP DOWNS
 
 async function loadDropdowns() {
-    const response = await fetch("http://localhost:8080/names");
-    const data = await response.json();
+    const responseCompetitors = await fetch("http://localhost:8080/competitors");
+    const competitors = await responseCompetitors.json();
 
     const competitorDropdown = document.getElementById("competitorDropdown");
     competitorDropdown.innerHTML = "";
-    data.competitorNames.forEach(name => {
+    competitors.forEach(c => {
         const option = document.createElement("option");
-        option.value = name;
-        option.text = name;
+        option.value = c.name;
+        option.text = c.name;
         competitorDropdown.appendChild(option);
     });
 
+    const responseCategories = await fetch("http://localhost:8080/categories");
+    const categories = await responseCategories.json();
+
     const categoryDropdown = document.getElementById("categoryDropdown");
     categoryDropdown.innerHTML = "";
-    data.categoryNames.forEach(name => {
+    categories.forEach(cat => {
         const option = document.createElement("option");
-        option.value = name;
-        option.text = name;
+        option.value = cat.name;
+        option.text = cat.name;
         categoryDropdown.appendChild(option);
     });
 }
