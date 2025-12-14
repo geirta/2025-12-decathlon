@@ -28,4 +28,11 @@ public class Competitor {
         this.totalPoints = 0;
     }
 
+    public Competitor(String name, String country, Integer age) {
+        this.name = name;
+        this.country = country;
+        this.age = age;
+        this.totalPoints = 0;
+    }
+
 }
