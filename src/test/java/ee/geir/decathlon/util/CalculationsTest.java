@@ -14,12 +14,15 @@ class CalculationsTest {
 
     // https://www.sportcalculators.com/decathlon-calculator
 
+
+    // TRACK EVENT
     @Test
     void calculate_100mSprint_Points() {
         double sum = Calculations.calculatePoints("100M_SPRINT", 10);
         assertEquals(1096, sum);
     }
 
+    // FIELD EVENT
     @Test
     void calculate_longJump_Points() {
         double sum = Calculations.calculatePoints("LONG_JUMP", 783);
