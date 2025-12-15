@@ -22,6 +22,7 @@ class CategoryServiceTest {
     @InjectMocks
     private CategoryService categoryService;
 
+    // TEST: CAN'T ADD A CATEGORY IF IT ALREADY EXISTS
     @Test
     void givenCategoryAlreadyExists_whenAddingExistingCategory_thenExceptionIsThrown() {
         Category category = new Category();

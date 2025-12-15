@@ -37,6 +37,7 @@ class CompetitorServiceTest {
         when(competitorRepository.findById(id)).thenReturn(Optional.of(competitor));
     }
 
+    // TEST: COMPETITOR ADDED WITH ID
     @Test
     void givenCompetitorCantBeAdded_whenCompetitorAddedWithId_thenExceptionIsThrown() {
         mockSaveCompetitorToDb(1L, "Mees", "Estonia", 25);
@@ -45,6 +46,7 @@ class CompetitorServiceTest {
         assertEquals("Cannot sign competitor with ID", msg);
     }
 
+    // TEST: COMPETITOR ADDED WITOUT NAME
     @Test
     void givenCompetitorCantBeAdded_whenCompetitorAddedWithoutName_thenExceptionIsThrown() {
         Competitor comp = new Competitor();
@@ -54,6 +56,17 @@ class CompetitorServiceTest {
         assertEquals("Competitor needs to have a name", msg);
     }
 
+    // TEST: COMPETITOR ADDED WITOUT COUNTRY
+    @Test
+    void givenCompetitorCantBeAdded_whenCompetitorAddedWithoutCountry_thenExceptionIsThrown() {
+        Competitor comp = new Competitor();
+        comp.setName("Geir");
+        comp.setAge(30);
+        String msg = assertThrows(RuntimeException.class, () -> competitorService.validate(comp)).getMessage();
+        assertEquals("Competitor needs to have a country", msg);
+    }
+
+    // TEST: COMPETITOR ADDED WITOUT AGE
     @Test
     void givenCompetitorCantBeAdded_whenCompetitorAddedWithoutAge_thenExceptionIsThrown() {
         Competitor comp = new Competitor();

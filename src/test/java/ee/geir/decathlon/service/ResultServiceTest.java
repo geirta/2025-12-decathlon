@@ -53,6 +53,7 @@ class ResultServiceTest {
         when(competitorRepository.findByNameIgnoreCase(name)).thenReturn(Optional.of(competitor));
     }
 
+    // TEST: CANT ADD RESULT WITOUT EXISTING COMPETITOR
     @Test
     void givenCompetitorDoesntExist_whenCompetitorNotInDbAndResultIsAdded_thenThrowException() {
         ResultRequest res = new ResultRequest("Geir", "DISCUS", 68);
@@ -60,6 +61,7 @@ class ResultServiceTest {
         assertEquals("Competitor not found", msg);
     }
 
+    // TEST: CANT ADD RESULT WITHOUT EXISTING CATEGORY
     @Test
     void givenCategoryDoesntExist_whenResultIsAdded_thenThrowException() {
         mockSaveCompetitorToDb("Geir", "Estonia", 31);
@@ -77,8 +79,9 @@ class ResultServiceTest {
         assertEquals("Category not found", msg);
     }
 
+    // TEST: CAN'T ADD RESULT TO DATABASE IF COMPETITOR ALREADY HAS A RESULT IN A SPECIFIC CATEGORY
     @Test
-    void givenResultAlreadyExists_whenResultIsAdded_thenThrowException() {
+    void givenResultInCategoryAlreadyExists_whenResultIsAdded_thenThrowException() {
         Competitor competitor = new Competitor();
         competitor.setName("Geir");
         competitor.setCountry("Estonia");
@@ -86,8 +89,8 @@ class ResultServiceTest {
         lenient().when(competitorRepository.findByNameIgnoreCase("Geir")).thenReturn(Optional.of(competitor));
 
         Category category = new Category();
-        category.setName("100M");
-        lenient().when(categoryRepository.findByNameIgnoreCase("100M")).thenReturn(Optional.of(category));
+        category.setName("100_METRES");
+        lenient().when(categoryRepository.findByNameIgnoreCase("100_METRES")).thenReturn(Optional.of(category));
 
         Result result = new Result();
         result.setResult(10);
@@ -98,7 +101,7 @@ class ResultServiceTest {
 
         ResultRequest resReq = new ResultRequest();
         resReq.setCompetitorName("Geir");
-        resReq.setCategoryName("100M");
+        resReq.setCategoryName("100_METRES");
         resReq.setResult(11);
 
         String msg = assertThrows(RuntimeException.class, () -> resultService.createResult(resReq)).getMessage();
